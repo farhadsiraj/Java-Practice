@@ -125,8 +125,8 @@ public class Pokerito {
     public static String randomCard() {
         double randomNum = Math.random() * 13;
         randomNum = randomNum + 1;
-
-        switch ((int) randomNum) {
+        int randomInt = (int) randomNum;
+        switch (randomInt) {
             case 1:
                 return "   _____\n" +
                         "  |A _  |\n" +
