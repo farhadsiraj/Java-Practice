@@ -8,7 +8,7 @@ public class Exams {
 
         // Task 2: Assign each student a seat according to their index in the array.
         // print: " <student at index 0> ", you will take seat 0.
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < students.length; i++) {
             System.out.println(students[i] + " you will take seat " + i);
         }
     }
