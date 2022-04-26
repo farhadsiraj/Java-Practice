@@ -15,6 +15,39 @@ public class Hangman {
             "tiger", "toad", "trout", "turkey", "turtle", "weasel", "whale", "wolf",
             "wombat", "zebra" };
 
+    public static String[] bags = {
+            "Chanel",
+            "Hermes",
+            "Dior",
+            "Louis Vuitton",
+            "Gucci",
+            "Prada",
+            "Balenciaga",
+            "Fendi",
+            "Versace",
+            "Valentino",
+            "Burberry",
+            "Yves Saint Laurent",
+            "Ferragamo",
+            "Alexander McQueen",
+            "Givenchy",
+            "Phillip Lim",
+            "Kate Spade",
+            "Michael Kors",
+            "Coach",
+            "Anna by Anushka",
+            "La Poet",
+            "Kattee",
+            "Banuce",
+            "Fossil",
+            "Marc Jacobs",
+            "JW Anderson",
+            "Bottega Veneta",
+            "Loewe",
+            "Paco Rabanne",
+            "Elleme",
+    };
+
     public static String[] gallows = { "+---+\n" +
             "|   |\n" +
             "    |\n" +
@@ -77,7 +110,7 @@ public class Hangman {
         Scanner scan = new Scanner(System.in);
 
         // Get random word from list
-        String word = randomWord();
+        String word = randomWord(bags);
 
         // Split word into letters
         String[] letters = word.split("");
@@ -102,7 +135,7 @@ public class Hangman {
         // Board
         while (mistakes <= 6) {
             System.out.println(gallows[mistakes]);
-            printPlaceholder(placeholder);
+            printPlaceholder(letters, placeholder);
             printMisses(misses);
             System.out.println("Guess: " + guess);
             // System.out.println(Arrays.toString(letters));
@@ -131,17 +164,22 @@ public class Hangman {
     }
 
     // Return a random word from the list
-    public static String randomWord() {
-        double randomNum = Math.random() * 64;
+    public static String randomWord(String[] list) {
+        double randomNum = Math.random() * list.length;
         int randomInt = (int) randomNum;
-        return words[randomInt];
+        return list[randomInt].toLowerCase();
     }
 
     // Print the placeholder
-    public static void printPlaceholder(String[] placeholder) {
+    public static void printPlaceholder(String[] letters, String[] placeholder) {
         System.out.print("Word: \t");
         for (int i = 0; i < placeholder.length; i++) {
-            System.out.print(placeholder[i] + " ");
+            if (letters[i].equals(" ")) {
+                System.out.print(" ");
+            } else {
+                System.out.print(placeholder[i] + " ");
+            }
+
         }
         System.out.println("\n");
     }
@@ -169,6 +207,10 @@ public class Hangman {
     // Updates the placeholder
     public static void updatePlaceholder(String letter, String[] word, String[] placeholder) {
         for (int i = 0; i < word.length; i++) {
+
+            if (word[i].equals(" ")) {
+                placeholder[i] = " ";
+            }
             if (word[i].equals(letter)) {
                 placeholder[i] = letter;
             }
