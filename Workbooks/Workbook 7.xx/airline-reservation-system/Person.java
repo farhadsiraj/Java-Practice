@@ -7,11 +7,11 @@ public class Person {
     private String[] passport;
     private int seatNumber;
 
-    public Person(String name, String nationality, String dateOfBirth, String[] passport, int seatNumber) {
+    public Person(String name, String nationality, String dateOfBirth, int seatNumber) {
         this.name = name;
         this.nationality = nationality;
         this.dateOfBirth = dateOfBirth;
-        this.passport = Arrays.copyOf(passport, passport.length);
+        this.passport = new String[3];
         this.seatNumber = seatNumber;
     }
 
@@ -55,8 +55,8 @@ public class Person {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public void setPassport(String[] passport) {
-        this.passport = Arrays.copyOf(passport, passport.length);
+    public void setPassport() {
+        this.passport = new String[] { this.name, this.nationality, this.dateOfBirth };
     }
 
     public void setSeatNumber(int seatNumber) {
