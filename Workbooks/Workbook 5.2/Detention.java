@@ -10,5 +10,6 @@ public class Detention {
         for (int i = 1; i <= 99; i++) {
             System.out.println(i + ". " + response);
         }
+        scan.close();
     }
 }

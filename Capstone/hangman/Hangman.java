@@ -160,7 +160,7 @@ public class Hangman {
                 mistakes++;
             }
         }
-
+        scan.close();
     }
 
     // Return a random word from the list
