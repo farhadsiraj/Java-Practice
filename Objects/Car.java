@@ -69,4 +69,12 @@ public class Car {
         System.out.println("Vroom vroom!");
         ;
     }
+
+    public String toString() {
+        return "Make: " + this.make + "\n"
+                + "Price: " + this.price + "\n"
+                + "Year: " + this.year + "\n"
+                + "Color: " + this.color + "\n"
+                + "Parts: " + Arrays.toString(this.parts) + "\n";
+    }
 }
