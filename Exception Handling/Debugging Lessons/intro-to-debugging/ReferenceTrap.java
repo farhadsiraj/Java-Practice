@@ -2,8 +2,8 @@ import java.util.Arrays;
 
 public class ReferenceTrap {
     public static void main(String[] args) {
-        String[] greeting = new String[] {"Hello", "John"};
-        String[] farewell = greeting;
+        String[] greeting = new String[] { "Hello", "John" };
+        String[] farewell = Arrays.copyOf(greeting, greeting.length);
 
         farewell[0] = "Goodbye";
 
