@@ -1,51 +1,45 @@
-import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        String[] parts = { "tires", "keys" };
+        Scanner scan = new Scanner(System.in);
 
-        Car nissan = new Car("Nissan", 5000, 2020, "Red", parts);
+        Car[] cars = new Car[] {
+                new Car("Nissan", 5000, 2020, "red", new String[] { "tires", "keys" }),
+                new Car("Dodge", 8500, 2019, "blue", new String[] { "tires", "keys" }),
+                new Car("Nissan", 5000, 2017, "yellow", new String[] { "tires", "filter" }),
+                new Car("Honda", 7000, 2019, "orange", new String[] { "tires", "filter" }),
+                new Car("Mercedes", 12000, 2015, "jet black", new String[] { "tires", "filter", "transmission" })
+        };
 
-        // Fields should be private so you can't accidently edit them using dot syntax
-        // like below
+        Dealership dealership = new Dealership(cars);
 
-        // nissan.make = "Nissan";
-        // nissan.price = 5000;
-        // nissan.year = 2020;
-        // nissan.color = "Red";
+        System.out.println("\n ****** JAVA DEALERSHIP! ****** \n");
+        System.out.print("Welcome! Enter the type of car you're looking for: ");
+        String make = scan.nextLine();
+        System.out.print("Enter your budget: ");
+        int budget = scan.nextInt();
 
-        // Instead you should be using get methods and set methods to access and edit
-        // object fields
+        int index = dealership.search(make, budget);
 
-        nissan.setColor("Lime Green");
+        switch (index) {
 
-        double newPrice = nissan.getPrice() / 2;
+            case 404:
+                System.out.println("Feel free to browse through our collection of cars.\n");
+                System.out.println(dealership);
+                break;
 
-        nissan.setPrice(newPrice);
+            default:
+                scan.nextLine();
+                String decision = scan.nextLine();
+                if (decision.equalsIgnoreCase("yes")) {
+                    dealership.sell(index);
+                }
 
-        // Creating a copy of the nissan instance using the copy constructor
-        Car nissan2 = new Car(nissan);
-        nissan2.setParts(new String[] { "tires", "filter" }); // returns new array without having to store in a var
-        System.out.println(Arrays.toString(nissan2.getParts()));
-        nissan2.drive();
+        }
 
-        System.out.println(nissan.getMake());
-        System.out.println(nissan.getPrice());
-        System.out.println(nissan.getYear());
-        System.out.println(nissan.getColor());
-        System.out.println(Arrays.toString(nissan.getParts()));
+        scan.close();
 
-        Car dodge = new Car("Dodge", 11000, 2019, "Blue", parts);
-
-        dodge.setColor("Electric Blue");
-
-        dodge.setPrice(dodge.getPrice() / 2);
-
-        System.out.println(dodge.getMake());
-        System.out.println(dodge.getPrice());
-        System.out.println(dodge.getYear());
-        System.out.println(dodge.getColor());
-        System.out.println(Arrays.toString(dodge.getParts()));
     }
 }
