@@ -1,32 +1,33 @@
 public class Car {
-    String make;
-    String color;
+    private String make;
+    private int year;
 
-    public Car(String make, String color) {
+    public Car(String make, int year) {
         this.make = make;
-        this.color = color;
+        this.year = year;
     }
 
     public Car(Car source) {
         this.make = source.make;
-        this.color = source.color;
+        this.year = source.year;
     }
 
     public String getMake() {
         return make;
     }
 
-    public String getColor() {
-        return color;
+    public int getYear() {
+        return year;
     }
 
     public void setMake(String make) {
         this.make = make;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setYear(int year) {
+        this.year = year;
     }
+
 
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -36,10 +37,8 @@ public class Car {
         if (!(obj instanceof Car)) {
             return false;
         }
-
         Car car = (Car) obj;
-        return this.make.equals(car.make) && this.color.equals(car.color);
-
+        return this.make.equals(car.make) && this.year == car.year;
     }
 
 }
